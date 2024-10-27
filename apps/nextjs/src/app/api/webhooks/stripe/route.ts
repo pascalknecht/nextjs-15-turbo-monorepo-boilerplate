@@ -2,9 +2,7 @@ import { env } from "@/env";
 import { stripe } from "@/lib/stripe";
 import { headers } from "next/headers";
 import type Stripe from "stripe";
-import { subscriptions } from "@/db/schema";
-import { eq } from "drizzle-orm";
-import { database } from "@/db";
+import { prisma } from "@/lib/prisma";
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -34,29 +32,33 @@ export async function POST(req: Request) {
       session.subscription as string
     );
 
-    await database.insert(subscriptions).values({
-      userId: session.metadata!.userId,
-      stripeSubscriptionId: subscription.id,
-      stripeCustomerId: subscription.customer as string,
-      stripePriceId: subscription.items.data[0]?.price.id,
-      stripeCurrentPeriodEnd: new Date(
-        subscription.current_period_end * 1000
-      ).toISOString(),
+    await prisma.subscription.create({
+      data: {
+        userId: session.metadata!.userId,
+        stripeSubscriptionId: subscription.id,
+        stripeCustomerId: subscription.customer as string,
+        stripePriceId: subscription.items.data[0]?.price.id,
+        stripeCurrentPeriodEnd: new Date(
+          subscription.current_period_end * 1000
+        ),
+      },
     });
   } else if (event.type === "invoice.payment_succeeded") {
     const subscription = await stripe.subscriptions.retrieve(
       session.subscription as string
     );
 
-    await database
-      .update(subscriptions)
-      .set({
+    await prisma.subscription.update({
+      where: {
+        stripeSubscriptionId: subscription.id,
+      },
+      data: {
         stripePriceId: subscription.items.data[0]?.price.id,
         stripeCurrentPeriodEnd: new Date(
           subscription.current_period_end * 1000
-        ).toISOString(),
-      })
-      .where(eq(subscriptions.stripeSubscriptionId, subscription.id));
+        ),
+      },
+    });
   }
 
   return new Response(null, { status: 200 });

@@ -5,12 +5,14 @@
         "@prisma/client": "5.21.1"
     },
     "devDependencies": {
+        "dotenv-cli": "^7.2.1",
         "@prisma/client": "5.21.1",
         "prisma": "^5.21.1"
     },
     "scripts": {
-        "db:generate": "prisma generate",
-        "db:push": "prisma db push --skip-generate"
+        "db:generate": "pnpm with-env prisma generate",
+        "db:push": "pnpm with-env prisma db push --skip-generate",
+        "with-env": "dotenv -e ../../.env --"
     },
     "exports": {
         ".": "./src/index.ts"

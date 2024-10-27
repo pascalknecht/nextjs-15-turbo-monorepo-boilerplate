@@ -1,6 +1,6 @@
-import { PricingSection } from "./(landing)/_sections/pricing";
-import { HeroSection } from "./(landing)/_sections/hero";
-import { FeaturesSection } from "./(landing)/_sections/features";
+import { PricingSection } from "./pricing";
+import { HeroSection } from "./hero";
+import { FeaturesSection } from "./features";
 
 export default async function Home() {
   return (

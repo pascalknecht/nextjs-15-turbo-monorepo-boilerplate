@@ -11,7 +11,6 @@ export const env = createEnv({
     STRIPE_API_KEY: z.string().min(1),
     STRIPE_WEBHOOK_SECRET: z.string().min(1),
     PRICE_ID: z.string().min(1),
-    HOSTNAME: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_STRIPE_KEY: z.string().min(1),
@@ -28,7 +27,6 @@ export const env = createEnv({
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
     PRICE_ID: process.env.PRICE_ID,
     NEXT_PUBLIC_STRIPE_KEY: process.env.NEXT_PUBLIC_STRIPE_KEY,
-    HOSTNAME: process.env.HOSTNAME,
     NEXT_PUBLIC_PROJECT_PLANNER_ID: process.env.NEXT_PUBLIC_PROJECT_PLANNER_ID,
     NEXT_PUBLIC_SKIP_EVENTS: process.env.NEXT_PUBLIC_SKIP_EVENTS,
   },

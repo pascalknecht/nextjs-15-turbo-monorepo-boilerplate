@@ -1,6 +1,5 @@
 import "@/app/globals.css";
 import type { Metadata } from "next";
-import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "@/components/ui/toaster";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
@@ -35,12 +34,8 @@ export default function RootLayout({
       >
         <Providers>
           <Toaster />
-          <NextTopLoader />
           <div className="flex flex-col w-full">
-            <Header />
             <div>{children}</div>
-            <Footer />
-            <RightsReserved />
           </div>
         </Providers>
       </body>

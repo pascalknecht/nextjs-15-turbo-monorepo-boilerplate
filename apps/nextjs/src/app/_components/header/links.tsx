@@ -20,10 +20,6 @@ export function Links() {
       <Button variant={"link"} asChild>
         <Link href="/#pricing">Pricing</Link>
       </Button>
-
-      <Button variant={"link"} asChild>
-        <Link href="/changelog">Changelog</Link>
-      </Button>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { AuthOptions, DefaultSession } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "./prisma";
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import bcrypt from "bcrypt";
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
@@ -39,7 +39,7 @@ export const authConfig = {
           },
         });
 
-        if (!user || !(await compare(credentials.password, user.password))) {
+        if (!user || !(await bcrypt.compare(credentials.password, user.password))) {
           throw new Error("User not found.");
         }
 
