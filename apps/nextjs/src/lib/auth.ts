@@ -1,9 +1,9 @@
 import { env } from "@/env";
 import { AuthOptions, DefaultSession } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "./prisma";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
+import prisma from "@repo/db";
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
@@ -16,6 +16,9 @@ export const authConfig = {
   adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
+  },
+  pages: {
+    signIn: "/login",
   },
   providers: [
     CredentialsProvider({

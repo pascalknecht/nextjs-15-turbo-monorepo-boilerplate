@@ -1,9 +1,5 @@
 import { GetStartedButton } from "@/app/_components/get-started-button";
-import { SignedIn } from "@/components/auth/signed-in";
-import { SignedOut } from "@/components/auth/signed-out";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -21,15 +17,7 @@ export function HeroSection() {
               <strong className="font-bold">SaaS projects</strong> with ease.
             </p>
             <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-              <SignedIn>
-                <Button asChild>
-                  <Link href="/todos">Go to your Dashboard</Link>
-                </Button>
-              </SignedIn>
-
-              <SignedOut>
-                <GetStartedButton />
-              </SignedOut>
+              <GetStartedButton />
             </div>
           </div>
 

@@ -1,7 +1,4 @@
 import { GetStartedButton } from "@/app/_components/get-started-button";
-import { SignedIn } from "@/components/auth/signed-in";
-import { SignedOut } from "@/components/auth/signed-out";
-import { UpgradeButton } from "@/components/stripe/upgrade-button/upgrade-button";
 import { CheckIcon } from "lucide-react";
 
 export function PricingSection() {
@@ -56,9 +53,7 @@ export function PricingSection() {
                 </span>
               </li>
             </ul>
-            <SignedOut>
-              <GetStartedButton />
-            </SignedOut>
+            <GetStartedButton />
           </div>
           <div className="flex flex-col w-fit p-6 text-center text-gray-900 bg-white border border-gray-100 rounded-lg shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
             <h3 className="mb-4 text-2xl font-semibold">Premium</h3>
@@ -100,13 +95,8 @@ export function PricingSection() {
               </li>
             </ul>
 
-            <SignedOut>
-              <GetStartedButton />
-            </SignedOut>
-
-            <SignedIn>
-              <UpgradeButton className="w-full" />
-            </SignedIn>
+            <GetStartedButton />
+    
           </div>
         </div>
       </div>
