@@ -1,13 +1,12 @@
+import React from "react"
 import "@/app/globals.css";
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Providers } from "@/app/_components/providers";
-import { Header } from "@/app/_components/header/header";
 import { ReactNode } from "react";
-import { Footer } from "@/app/_components/footer";
-import { RightsReserved } from "./(landing)/_sections/reserved";
+
 
 const fontSans = FontSans({
   subsets: ["latin"],

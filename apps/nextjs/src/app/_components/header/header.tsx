@@ -1,3 +1,4 @@
+import React from "react"
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import FeedbackButton from "./feedback";
@@ -6,7 +7,7 @@ import Image from "next/image";
 
 export async function Header() {
   return (
-    <div className="border-b py-4">
+    <header className="border-b py-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex gap-8 items-center">
           <Link href="/" className="flex gap-2 items-center text-xl">
@@ -35,6 +36,6 @@ export async function Header() {
             </Button>
         </div>
       </div>
-    </div>
+    </header>
   );
 }

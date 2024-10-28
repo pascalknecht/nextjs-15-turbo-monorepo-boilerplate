@@ -1,3 +1,4 @@
+import React from "react"
 import { PricingSection } from "./pricing";
 import { HeroSection } from "./hero";
 import { FeaturesSection } from "./features";

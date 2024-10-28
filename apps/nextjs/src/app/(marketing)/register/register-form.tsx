@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -9,6 +10,8 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { createUser } from "@/app/actions/user"
+import { useToast } from "@/components/ui/use-toast"
+import { signIn } from "next-auth/react"
 
 const formSchema = z.object({
   fullName: z.string().min(2, {
@@ -23,6 +26,7 @@ const formSchema = z.object({
 })
 
 export function RegisterForm() {
+  const { toast } = useToast()
   const [serverError, setServerError] = useState<string | null>(null)
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -40,8 +44,16 @@ export function RegisterForm() {
       if (result.error) {
         setServerError(result.error)
       } else {
-        // Handle successful registration (e.g., redirect or show success message)
-        console.log("User registered successfully:", result.user)
+        toast({
+          title: "User registered successfully",
+          description: "You will be redirected to the dashboard",
+        })
+
+        await signIn("credentials", {
+          email: values.email,
+          password: values.password,
+          callbackUrl: "/dashboard",
+        })
       }
     } catch (error) {
       setServerError("An unexpected error occurred. Please try again.")

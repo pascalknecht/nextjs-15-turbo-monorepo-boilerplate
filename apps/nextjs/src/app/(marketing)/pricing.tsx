@@ -1,3 +1,4 @@
+import React from "react"
 import { GetStartedButton } from "@/app/_components/get-started-button";
 import { CheckIcon } from "lucide-react";
 
