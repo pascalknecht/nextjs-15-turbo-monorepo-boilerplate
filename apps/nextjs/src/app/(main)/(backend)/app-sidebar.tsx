@@ -33,15 +33,9 @@ export default function AppSidebar() {
   return (
     <Sidebar className="border-r-0">
       <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild size="lg" className="pt-6">
-              <Link href="/">
-                <h2 className="text-lg font-semibold">Company name</h2>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <Link href="/" className="flex items-center gap-2 px-2 py-6">
+          <h2 className="text-lg font-semibold">Company name</h2>
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
