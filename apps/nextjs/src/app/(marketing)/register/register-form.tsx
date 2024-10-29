@@ -78,39 +78,39 @@ export function RegisterForm() {
               control={form.control}
               name="fullName"
               render={({ field }) => (
-                <div className="space-y-2">
+                <FormItem className="space-y-2">
                   <FormLabel>Full name</FormLabel>
                   <FormControl>
                     <Input placeholder="John Doe" {...field} />
                   </FormControl>
                   <FormMessage />
-                </div>
+                </FormItem>
               )}
             />
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
-                <div className="space-y-2">
+                <FormItem className="space-y-2">
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input type="email" placeholder="me@example.com" {...field} />
                   </FormControl>
                   <FormMessage />
-                </div>
+                </FormItem>
               )}
             />
             <FormField
               control={form.control}
               name="password"
               render={({ field }) => (
-                <div className="space-y-2">
+                <FormItem className="space-y-2">
                   <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input type="password" {...field} />
                   </FormControl>
                   <FormMessage />
-                </div>
+                </FormItem>
               )}
             />
             <Button type="submit" className="w-full bg-black text-white hover:bg-black/90">

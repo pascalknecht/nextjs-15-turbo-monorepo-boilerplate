@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { LoaderButton } from "@/components/loader-button";
 import {
   AlertDialog,
@@ -27,7 +28,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { deleteAccountAction } from "./actions";
 import { signOut } from "next-auth/react";
-import { trackEvent } from "@/lib/events";
 
 export const deleteSchema = z.object({
   confirm: z.string().refine((v) => v === "Please delete", {
@@ -47,7 +47,6 @@ export function DeleteAccountButton() {
   });
 
   function onSubmit() {
-    trackEvent("user deleted account");
     startTransition(() => {
       deleteAccountAction().then(() =>
         signOut({

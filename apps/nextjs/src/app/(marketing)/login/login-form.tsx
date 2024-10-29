@@ -55,20 +55,20 @@ export function LoginForm() {
               control={form.control}
               name="email"
               render={({ field }) => (
-                <div className="space-y-2">
+                <FormItem className="space-y-2">
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input placeholder="test@example.com" {...field} />
                   </FormControl>
                   <FormMessage />
-                </div>
+                </FormItem>
               )}
             />
             <FormField
               control={form.control}
               name="password"
               render={({ field }) => (
-                <div className="space-y-2">
+                <FormItem className="space-y-2">
                   <div className="flex items-center justify-between">
                     <FormLabel>Password</FormLabel>
                     <Link tabIndex={4} href="/forgot-password" className="text-sm text-muted-foreground underline">
@@ -79,7 +79,7 @@ export function LoginForm() {
                     <Input type="password" {...field} />
                   </FormControl>
                   <FormMessage />
-                </div>
+                </FormItem>
               )}
             />
             <Button type="submit" className="w-full bg-black text-white hover:bg-black/90">
