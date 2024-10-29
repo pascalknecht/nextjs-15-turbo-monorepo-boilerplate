@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function TermsOfServicePage() {
   return (
     <div className="prose dark:prose-invert max-w-4xl mx-auto py-12">
