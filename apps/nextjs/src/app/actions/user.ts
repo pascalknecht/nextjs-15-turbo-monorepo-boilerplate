@@ -1,8 +1,8 @@
 "use server"
 
 import { z } from "zod"
-import { prisma } from "@/lib/prisma"
 import bcrypt from "bcrypt"
+import prisma from "@repo/db"
 
 const userSchema = z.object({
   fullName: z.string().min(2),

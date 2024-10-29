@@ -6,15 +6,9 @@ import { signIn } from "next-auth/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
+import { Separator } from "@/components/ui/separator"
 
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import {
   Form,
@@ -48,54 +42,59 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="mx-auto max-w-sm">
-      <CardHeader>
-        <CardTitle className="text-2xl">Login</CardTitle>
-        <CardDescription>
-          Enter your email below to login to your account
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+    <div className="flex items-center justify-center p-4">
+      <div className="w-full max-w-md space-y-8 rounded-xl bg-white p-8 shadow-lg">
+        <div className="space-y-2 text-center">
+          <h1 className="text-2xl font-semibold tracking-tight">Welcome</h1>
+          <p className="text-muted-foreground">Log in to your account</p>
+        </div>
+
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem>
+                <div className="space-y-2">
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input placeholder="test@example.com" {...field} />
                   </FormControl>
                   <FormMessage />
-                </FormItem>
+                </div>
               )}
             />
             <FormField
               control={form.control}
               name="password"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <FormLabel>Password</FormLabel>
+                    <Link href="/forgot-password" className="text-sm text-muted-foreground underline">
+                      Forgot password?
+                    </Link>
+                  </div>
                   <FormControl>
                     <Input type="password" {...field} />
                   </FormControl>
                   <FormMessage />
-                </FormItem>
+                </div>
               )}
             />
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full bg-black text-white hover:bg-black/90">
               Login
             </Button>
           </form>
         </Form>
-        <div className="mt-4 text-center text-sm">
+
+        <p className="text-center text-sm text-muted-foreground">
           Don&apos;t have an account?{" "}
           <Link href="/register" className="underline">
             Sign up
           </Link>
-        </div>
-      </CardContent>
-    </Card>
+        </p>
+      </div>
+    </div>
   )
 }

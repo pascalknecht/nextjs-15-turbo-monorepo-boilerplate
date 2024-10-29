@@ -4,7 +4,6 @@ import React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -12,6 +11,8 @@ import { useState } from "react"
 import { createUser } from "@/app/actions/user"
 import { useToast } from "@/components/ui/use-toast"
 import { signIn } from "next-auth/react"
+import { Separator } from "@/components/ui/separator"
+import Link from "next/link"
 
 const formSchema = z.object({
   fullName: z.string().min(2, {
@@ -61,14 +62,15 @@ export function RegisterForm() {
   }
 
   return (
-    <Card className="mx-auto max-w-sm">
-      <CardHeader>
-        <CardTitle className="text-2xl">Register</CardTitle>
-        <CardDescription>Enter your information to create an account</CardDescription>
-      </CardHeader>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <CardContent className="space-y-4">
+    <div className="flex items-center justify-center">
+      <div className="w-full max-w-md space-y-8 rounded-xl bg-white p-8 shadow-lg">
+        <div className="space-y-2 text-center">
+          <h1 className="text-2xl font-semibold tracking-tight">Create an account</h1>
+          <p className="text-muted-foreground">Enter your information below to get started</p>
+        </div>
+
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {serverError && (
               <div className="text-red-500 text-sm">{serverError}</div>
             )}
@@ -76,47 +78,54 @@ export function RegisterForm() {
               control={form.control}
               name="fullName"
               render={({ field }) => (
-                <FormItem>
+                <div className="space-y-2">
                   <FormLabel>Full name</FormLabel>
                   <FormControl>
                     <Input placeholder="John Doe" {...field} />
                   </FormControl>
                   <FormMessage />
-                </FormItem>
+                </div>
               )}
             />
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem>
+                <div className="space-y-2">
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input type="email" placeholder="me@example.com" {...field} />
                   </FormControl>
                   <FormMessage />
-                </FormItem>
+                </div>
               )}
             />
             <FormField
               control={form.control}
               name="password"
               render={({ field }) => (
-                <FormItem>
+                <div className="space-y-2">
                   <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input type="password" {...field} />
                   </FormControl>
                   <FormMessage />
-                </FormItem>
+                </div>
               )}
             />
-          </CardContent>
-          <CardFooter>
-            <Button type="submit" className="w-full">Register</Button>
-          </CardFooter>
-        </form>
-      </Form>
-    </Card>
+            <Button type="submit" className="w-full bg-black text-white hover:bg-black/90">
+              Register
+            </Button>
+          </form>
+        </Form>
+        
+        <p className="text-center text-sm text-muted-foreground">
+          Already have an account?{" "}
+          <Link href="/login" className="underline">
+            Log in
+          </Link>
+        </p>
+      </div>
+    </div>
   )
 }
