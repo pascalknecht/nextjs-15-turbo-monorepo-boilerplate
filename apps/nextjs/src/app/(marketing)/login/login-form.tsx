@@ -71,7 +71,7 @@ export function LoginForm() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <FormLabel>Password</FormLabel>
-                    <Link href="/forgot-password" className="text-sm text-muted-foreground underline">
+                    <Link tabIndex={4} href="/forgot-password" className="text-sm text-muted-foreground underline">
                       Forgot password?
                     </Link>
                   </div>
