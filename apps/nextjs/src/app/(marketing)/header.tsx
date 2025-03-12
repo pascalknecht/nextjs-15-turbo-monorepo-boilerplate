@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import FeedbackButton from "./feedback";
@@ -30,10 +30,10 @@ export async function Header() {
           <Button asChild>
             <Link href="/register">Sign Up</Link>
           </Button>
-        
-            <Button asChild>
-              <Link href="/login">Sign In</Link>
-            </Button>
+
+          <Button asChild>
+            <Link href="/login">Sign In</Link>
+          </Button>
         </div>
       </div>
     </header>

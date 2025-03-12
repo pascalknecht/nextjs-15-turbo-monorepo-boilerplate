@@ -11,16 +11,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
@@ -28,9 +18,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, MessageCircleHeart } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-
-import { useToast } from "@/components/ui/use-toast";
-import useMediaQuery from "@/hooks/use-media-query";
 
 type FeedbackFormProps = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -46,34 +33,8 @@ const feedbackSchema = z.object({
 export default function FeedbackButton() {
   const [open, setOpen] = React.useState(false);
 
-  const { isMobile } = useMediaQuery();
-
   const description =
     "We value your feedback. How can we improve your experience?";
-
-  if (isMobile) {
-    return (
-      <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerTrigger asChild>
-          <button>
-            <MessageCircleHeart />
-          </button>
-        </DrawerTrigger>
-        <DrawerContent>
-          <DrawerHeader className="text-left">
-            <DrawerTitle>Feedback</DrawerTitle>
-            <DrawerDescription>{description}</DrawerDescription>
-          </DrawerHeader>
-          <FeedbackForm setOpen={setOpen} />
-          <DrawerFooter className="pt-2">
-            <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DrawerClose>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
-    );
-  }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

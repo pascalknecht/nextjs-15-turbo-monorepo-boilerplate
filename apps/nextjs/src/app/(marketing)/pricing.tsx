@@ -1,6 +1,6 @@
-import React from "react"
-import { GetStartedButton } from "@/app/_components/get-started-button";
+import React from "react";
 import { CheckIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function PricingSection() {
   return (
@@ -54,7 +54,7 @@ export function PricingSection() {
                 </span>
               </li>
             </ul>
-            <GetStartedButton />
+            <Button>Get Started</Button>
           </div>
           <div className="flex flex-col w-fit p-6 text-center text-gray-900 bg-white border border-gray-100 rounded-lg shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
             <h3 className="mb-4 text-2xl font-semibold">Premium</h3>
@@ -96,8 +96,7 @@ export function PricingSection() {
               </li>
             </ul>
 
-            <GetStartedButton />
-    
+            <Button>Get Started</Button>
           </div>
         </div>
       </div>

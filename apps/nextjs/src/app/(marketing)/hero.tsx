@@ -1,6 +1,6 @@
-import React from "react"
-import { GetStartedButton } from "@/app/_components/get-started-button";
+import React from "react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
@@ -18,7 +18,7 @@ export function HeroSection() {
               <strong className="font-bold">SaaS projects</strong> with ease.
             </p>
             <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-              <GetStartedButton />
+              <Button>Get Started</Button>
             </div>
           </div>
 
