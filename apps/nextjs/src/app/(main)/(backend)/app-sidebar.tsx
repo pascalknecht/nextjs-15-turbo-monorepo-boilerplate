@@ -26,9 +26,11 @@ import {
 import Link from "next/link";
 import { signOut } from "@/lib/auth-client";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function AppSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <Sidebar className="border-r-0">
@@ -122,7 +124,13 @@ export default function AppSidebar() {
             <SidebarMenuButton
               className="text-red-600"
               onClick={() => {
-                signOut();
+                signOut({
+                  fetchOptions: {
+                    onSuccess: () => {
+                      router.push("/login");
+                    },
+                  },
+                });
               }}
             >
               <LogOut className="h-4 w-4" />
