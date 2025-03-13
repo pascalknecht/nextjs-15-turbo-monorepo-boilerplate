@@ -18,6 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, MessageCircleHeart } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
+import { toast } from "sonner";
 
 type FeedbackFormProps = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -66,7 +67,6 @@ export function FeedbackForm({ setOpen }: FeedbackFormProps) {
       feedback: "",
     },
   });
-  const { toast } = useToast();
   const onSubmit = async (values: z.infer<typeof feedbackSchema>) => {
     try {
       await fetch("https://projectplannerai.com/api/feedback", {
@@ -81,8 +81,7 @@ export function FeedbackForm({ setOpen }: FeedbackFormProps) {
         }),
       });
       setOpen(false);
-      toast({
-        title: "Feedback submitted",
+      toast.success("Feedback submitted", {
         description: "Thank you for your feedback",
       });
     } catch (error) {

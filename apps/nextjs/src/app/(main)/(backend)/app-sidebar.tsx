@@ -24,7 +24,7 @@ import {
   LogOut,
 } from "lucide-react";
 import Link from "next/link";
-import { signOut } from "next-auth/react";
+import { signOut } from "@/lib/auth-client";
 import { usePathname } from "next/navigation";
 
 export default function AppSidebar() {

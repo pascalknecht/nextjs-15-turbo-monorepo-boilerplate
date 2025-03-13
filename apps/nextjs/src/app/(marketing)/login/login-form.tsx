@@ -1,15 +1,13 @@
 "use client";
 
-import React from "react"
-import Link from "next/link"
-import { signIn } from "next-auth/react"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { Separator } from "@/components/ui/separator"
+import React from "react";
+import Link from "next/link";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -17,12 +15,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from "@/components/ui/form";
+import { signIn } from "@/lib/auth-client";
 
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(1, "Password is required"),
-})
+});
 
 export function LoginForm() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -31,15 +30,15 @@ export function LoginForm() {
       email: "",
       password: "",
     },
-  })
+  });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    await signIn("credentials", {
+    await signIn.email({
       email: values.email,
       password: values.password,
-      callbackUrl: "/dashboard",
-    })
-  }
+      callbackURL: "/dashboard",
+    });
+  };
 
   return (
     <div className="flex items-center justify-center p-4">
@@ -69,12 +68,7 @@ export function LoginForm() {
               name="password"
               render={({ field }) => (
                 <FormItem className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <FormLabel>Password</FormLabel>
-                    <Link tabIndex={4} href="/forgot-password" className="text-sm text-muted-foreground underline">
-                      Forgot password?
-                    </Link>
-                  </div>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input type="password" {...field} />
                   </FormControl>
@@ -82,7 +76,10 @@ export function LoginForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full bg-black text-white hover:bg-black/90">
+            <Button
+              type="submit"
+              className="w-full bg-black text-white hover:bg-black/90"
+            >
               Login
             </Button>
           </form>
@@ -96,5 +93,5 @@ export function LoginForm() {
         </p>
       </div>
     </div>
-  )
+  );
 }

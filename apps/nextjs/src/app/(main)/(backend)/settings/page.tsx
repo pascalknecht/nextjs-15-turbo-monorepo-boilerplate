@@ -1,7 +1,4 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { DeleteAccountButton } from "./_components/delete-account-button";
 import DashboardHeader from "../components/dashboard-header";
 
 export default function SettingsPage() {
@@ -19,37 +16,7 @@ export default function SettingsPage() {
               Manage Subscription
             </span>
           </div>
-
-          <div className="p-4 sm:px-6">
-            <div className="mb-4 flex text-sm sm:text-base flex-col gap-4">
-              <div>You can cancel your subscription with the link below</div>
-              <Button asChild className="max-w-fit">
-                <Link
-                  href={process.env.NEXT_PUBLIC_STRIPE_MANAGE_URL!}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Manage Subscription
-                </Link>
-              </Button>
-            </div>
-          </div>
         </div>
-
-        {/*<div className="bg-white border-red-500 dark:bg-transparent rounded-md border">
-          <div className="border-b px-4 py-2 sm:px-6 md:py-3 dark:bg-neutral-900/50 bg-neutral-50 rounded-t-md">
-            <span className="text-base sm:text-lg font-medium mb-4">
-              Danger Zone
-            </span>
-          </div>
-
-          <div className="p-4 sm:px-6">
-            <div className="mb-4 flex text-sm sm:text-base flex-col gap-4">
-              <div>You can delete your account below</div>
-              <DeleteAccountButton />
-            </div>
-          </div> 
-        </div>*/}
       </section>
     </div>
   );
