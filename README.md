@@ -20,16 +20,11 @@ A modern, full-featured Turborepo monorepo starter template with Next.js 15.
 
 ## 🔧 Development
 
-### Build
-
-```bash
-cd my-turborepo
-pnpm build
-```
-
 ### Development Server
 
 ```bash
 cd my-turborepo
+pnpm install
+cd apps/nextjs && pnpm db:generate
 pnpm dev
 ```
